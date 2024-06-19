@@ -1,0 +1,47 @@
+services:
+
+  nginx:
+    container_name: nginx
+    image: nginx
+    volumes:      
+      - ./config/nginx/default.conf:/etc/config/nginx/conf.d/default.conf
+      - ./config/nginx/nginx.conf:/etc/config/nginx/nginx.conf
+      - ./laravel/:/var/www
+    ports:
+      - "8083:80"
+    depends_on:
+      - postgres
+
+  laravel:
+    container_name: laravel
+    user: "1000:1000"
+    build:
+      context: ./laravel
+      dockerfile: Dockerfile
+    volumes:
+      - ./laravel/:/var/www
+    working_dir: /home/source/main
+    ports:
+      - 8000:8000
+
+  postgres:
+    container_name: postgres
+    image: postgres:16.3
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: db
+    ports:
+      - 35000:5432
+
+  postgres_admin:
+    container_name: pgadmin
+    image: dpage/pgadmin4
+    depends_on:
+      - postgres
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: password
+      PGADMIN_CONFIG_SERVER_MODE: "False"
+    ports:
+      - 5050:80
