@@ -3,63 +3,35 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use Illuminate\Http\Request;
+use App\Http\Requests\UserRequest;
 
 class UserController
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function singIn(UserRequest $request)
     {
-        //
+        $user = User::create($request->all());
+
+        return response()->json($user, 201);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function logIn(UserRequest $request)
     {
-        //
+        $user = User::where('name', '==', $request->name);
+
+        if ($user == null) {
+            return response()->setStatusCode(306);
+        } 
+        if ($user->password != $request->password){
+            return response()->setStatusCode(306);
+        } else{
+            return response()->json($user, 202);
+        }
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function destroy(int $id)
     {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(User $user)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(User $user)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, User $user)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(User $user)
-    {
-        //
+        $user = User::destroy($id);
+        
+        return response()->json($user,204);
     }
 }

@@ -3,63 +3,30 @@
 namespace App\Http\Controllers;
 
 use App\Models\OS;
-use Illuminate\Http\Request;
+use App\Http\Requests\OSRequest;
 
 class OSController
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function create(OSRequest $request)
     {
-        //
+        $os = OS::create($request->all());
+
+        return response()->json($os, 201);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function update(OSRequest $request, $id)
     {
-        //
+        $os = OS::findOrFail($id);
+        $os->update($request->all());
+        $os->save();
+
+        return response()->json($os, 202);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function destroy($id)
     {
-        //
-    }
+        $os = OS::destroy($id);
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(OS $oS)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(OS $oS)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, OS $oS)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(OS $oS)
-    {
-        //
+        return response()->json($os, 204);
     }
 }

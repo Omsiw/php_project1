@@ -3,63 +3,46 @@
 namespace App\Http\Controllers;
 
 use App\Models\Discount;
-use Illuminate\Http\Request;
+use App\Http\Requests\DiscountRequest;
 
 class DiscountController
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function showByGameId($id)
     {
-        //
+        $discount = Discount::where('game_id', '==', $id);
+
+        return response()->json($discount,200);
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(DiscountRequest $request)
     {
-        //
+        $discount = Discount::create($request->all());
+
+        return response()->json($discount,201);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function update(DiscountRequest $request, $id)
     {
-        //
-    }
+        $discount = Discount::findOrFail($id);
+        $discount->update($request->all());
+        $discount->save();
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Discount $discount)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Discount $discount)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Discount $discount)
-    {
-        //
+        return response()->json($discount, 202);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Discount $discount)
+    public function destroy($id)
     {
-        //
+        $discount = Discount::destroy($id);
+        
+        return response()->json($discount, 204);
     }
 }

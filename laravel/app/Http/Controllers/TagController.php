@@ -3,63 +3,30 @@
 namespace App\Http\Controllers;
 
 use App\Models\Tag;
-use Illuminate\Http\Request;
+use App\Http\Requests\TagRequest;
 
 class TagController
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function create(TagRequest $request)
     {
-        //
+        $tag = Tag::create($request->all());
+
+        return response()->json($tag, 201);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function update(TagRequest $request, $id)
     {
-        //
+        $tag = Tag::findOrFail($id);
+        $tag->update($request->all());
+        $tag->save();
+
+        return response()->json($tag, 202);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function destroy($id)
     {
-        //
-    }
+        $tag = Tag::destroy($id);
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Tag $tag)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Tag $tag)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Tag $tag)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Tag $tag)
-    {
-        //
+        return response()->json($tag, 204);
     }
 }

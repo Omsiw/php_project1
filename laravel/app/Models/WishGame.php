@@ -10,7 +10,7 @@ class WishGame extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name','cost','image_path','date_add','info'];
+    protected $fillable = ['name','user_id','game_id'];
 
     public function user(): BelongsTo{
         return $this->belongsTo(User::class);

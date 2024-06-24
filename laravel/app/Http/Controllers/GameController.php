@@ -7,9 +7,6 @@ use Illuminate\Http\Request;
 
 class GameController
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
         //
