@@ -14,7 +14,7 @@ class DiscountController
     {
         $discount = Discount::where('game_id', '==', $id);
 
-        return response()->json($discount,200);
+        return response()->json($discount, 200);
     }
 
     /**
@@ -24,7 +24,7 @@ class DiscountController
     {
         $discount = Discount::create($request->all());
 
-        return response()->json($discount,201);
+        return response()->json($discount, 201);
     }
 
     public function update(DiscountRequest $request, $id)

@@ -18,7 +18,7 @@ class WishGameController
     {
         $wishGame = WishGame::where('user_id', '==', $id);
 
-        return response()->json($wishGame,200);
+        return response()->json($wishGame, 200);
     }
 
     public function destroy($id)

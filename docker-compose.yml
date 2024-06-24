@@ -10,7 +10,7 @@ services:
     ports:
       - "8083:80"
     depends_on:
-      - postgres
+      - laravel
     networks:
       - app-network
 
