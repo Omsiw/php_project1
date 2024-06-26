@@ -3,63 +3,44 @@
 namespace App\Http\Controllers;
 
 use App\Models\Revie;
-use Illuminate\Http\Request;
+use App\Http\Requests\RevieRequest;
 
 class RevieController
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function showByGameId($id)
     {
-        //
+        $revie = Revie::where('game_id', $id);
+
+        return response()->json($revie, 200);
+    }
+    
+    public function showByUserId($id)
+    {
+        $revie = Revie::where('user_id', $id);
+
+        return response()->json($revie, 200);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function create(RevieRequest $request)
     {
-        //
+        $revie = Revie::create($request->all());
+
+        return response()->json($revie, 201);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function update(RevieRequest $request, $id)
     {
-        //
+        $revie = Revie::findOrFail($id);
+        $revie->update($request->all());
+        $revie->save();
+
+        return response()->json($revie, 202);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Revie $revie)
+    public function destroy($id)
     {
-        //
-    }
+        $revie = Revie::destroy($id);
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Revie $revie)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Revie $revie)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Revie $revie)
-    {
-        //
+        return response()->json($revie, 204);
     }
 }

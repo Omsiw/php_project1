@@ -3,63 +3,37 @@
 namespace App\Http\Controllers;
 
 use App\Models\OrderHistory;
-use Illuminate\Http\Request;
+use App\Http\Requests\OrderHistoryRequest;
 
 class OrderHistoryController
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function showByUserId($id)
     {
-        //
+        $orderHistory = OrderHistory::where('user_id', $id);
+        
+        return response()->json($orderHistory, 200);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function create(OrderHistoryRequest $request)
     {
-        //
+        $orderHistory = OrderHistory::create($request->all());
+
+        return response()->json($orderHistory, 201);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function update(OrderHistoryRequest $request, $id)
     {
-        //
+        $orderHistory = OrderHistory::findOrFail($id);
+        $orderHistory->update($request->all());
+        $orderHistory->save();
+
+        return response()->json($orderHistory, 202);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(OrderHistory $orderHistory)
+    public function destroy($id)
     {
-        //
-    }
+        $orderHistory = OrderHistory::destroy($id);
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(OrderHistory $orderHistory)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, OrderHistory $orderHistory)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(OrderHistory $orderHistory)
-    {
-        //
+        return response()->json($orderHistory, 204);
     }
 }
