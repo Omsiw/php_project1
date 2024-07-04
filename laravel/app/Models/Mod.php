@@ -11,7 +11,7 @@ class Mod extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['game_id', 'author_id', 'name', 'info', 'image_path', 'date_add'];
+    protected $fillable = ['game_id', 'author_id', 'name', 'info', 'date_add'];
 
     public function game(): BelongsTo{
         return $this->belongsTo(Game::class);

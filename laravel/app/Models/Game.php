@@ -11,7 +11,7 @@ class Game extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name','cost','image_path','date_add','info'];
+    protected $fillable = ['name','cost','date_add','info'];
     
     public function order(): HasMany{
         return $this->hasMany(Order::class);

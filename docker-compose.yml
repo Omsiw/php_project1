@@ -1,15 +1,18 @@
-version: '3.8'
+# version: '3.8'
 services:
   nginx:
     container_name: nginx
     image: nginx
     volumes:      
       - ./config/nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - ./config/nginx/CshApi.conf:/etc/nginx/conf.d/CshApi.conf
       - ./config/nginx/nginx.conf:/etc/nginx/nginx.conf
-      - ./laravel:/var/www/public
+      - ./laravel:/var/www/laravel
+      - ./net7.0:/var/www/net7.0
     ports:
       - "80:80"
     depends_on:
+      - csh
       - laravel
     networks:
       - app-network
@@ -20,11 +23,23 @@ services:
       context: ./laravel
       dockerfile: Dockerfile
     volumes:
-      - ./laravel/:/var/www
+      - ./laravel/:/var/www/laravel
     ports:
       - "9000:9000"
     depends_on:
       - postgres
+    networks:
+      - app-network
+
+  csh:
+    container_name: csh
+    build:
+      context: ./net7.0
+      dockerfile: Dockerfile
+    volumes:
+      - ./net7.0/:/var/www/net7.0
+    ports:
+      - "9001:80"
     networks:
       - app-network
 

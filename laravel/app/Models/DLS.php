@@ -11,7 +11,7 @@ class DLS extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['game_id', 'name', 'info', 'image_path', 'cost'];
+    protected $fillable = ['game_id', 'name', 'info', 'cost'];
 
     public function game(): BelongsTo{
         return $this->belongsTo(Game::class);

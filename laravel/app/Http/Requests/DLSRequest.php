@@ -4,14 +4,14 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UserRequest extends FormRequest
+class DLSRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return true;
+        return false;
     }
 
     /**
@@ -22,8 +22,10 @@ class UserRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'min:3|max:10|string',
-            'password' => 'min:8|max:16|string'
+            'game_id' => 'integer',
+            'name' => 'min:3|max:20|string',
+            'info' => 'string',
+            'cost' => 'integer'
         ];
     }
 }
