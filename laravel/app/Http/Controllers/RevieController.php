@@ -7,14 +7,14 @@ use App\Http\Requests\RevieRequest;
 
 class RevieController
 {
-    public function showByGameId($id)
+    public function selectByGameId($id)
     {
         $revie = Revie::where('game_id', $id);
 
         return response()->json($revie, 200);
     }
     
-    public function showByUserId($id)
+    public function selectByUserId($id)
     {
         $revie = Revie::where('user_id', $id);
 

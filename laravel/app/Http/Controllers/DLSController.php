@@ -3,63 +3,65 @@
 namespace App\Http\Controllers;
 
 use App\Models\DLS;
-use Illuminate\Http\Request;
+use App\Http\Requests\DLSRequest;
 
 class DLSController
-{
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+{   
+    public function selectByGameId($id)
     {
-        //
+        $dls = DLS::game()->find($id);
+        
+        return response()->json($dls, 200);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function selectByUserId($id)
     {
-        //
+        $dls = DLS::user()->find($id);
+
+        return response()->json($dls, 200);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function selectById($id)
     {
-        //
+        $dls = DLS::find($id);
+
+        return response()->json($dls, 200);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(DLS $dLS)
+    public function selectByAuthorId($id)
     {
-        //
+        $dls = DLS::game()->author()->find($id);
+
+        return response()->json($dls, 200);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(DLS $dLS)
+    public function selectByPublisherId($id)
     {
-        //
+        $dls = DLS::game()->publisher()->find($id);
+
+        return response()->json($dls, 200);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, DLS $dLS)
+    public function create(DLSRequest $request)
     {
-        //
+        $dls = DLS::create($request->all());
+
+        return response()->json($dls, 201);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(DLS $dLS)
+    public function update(DLSRequest $request, $id)
     {
-        //
+        $dls = DLS::findOrFail($id);
+        $dls->update($request->all());
+        $dls->save();
+
+        return response()->json($dls, 202);
+    }
+
+    public function destroy($id)
+    {
+        $dls = DLS::destroy($id);
+
+        return request()->json($dls, 204);
     }
 }

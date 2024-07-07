@@ -3,63 +3,58 @@
 namespace App\Http\Controllers;
 
 use App\Models\Mod;
-use Illuminate\Http\Request;
+use App\Http\Requests\ModRequest;
 
 class ModController
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function selectByGameId($id)
     {
-        //
+        $mod = Mod::game()->find($id);
+        
+        return response()->json($mod, 200);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function selectById($id)
     {
-        //
+        $mod = Mod::find($id);
+
+        return response()->json($mod, 200);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function selectByUserId($id)
     {
-        //
+        $mod = Mod::user()->find($id);
+
+        return response()->json($mod, 200);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Mod $mod)
+    public function selectByAuthorId($id)
     {
-        //
+        $mod = Mod::author()->find($id);
+
+        return response()->json($mod, 200);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Mod $mod)
+    public function create(ModRequest $request)
     {
-        //
+        $mod = Mod::create($request->all());
+
+        return response()->json($mod, 201);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Mod $mod)
+    public function update(ModRequest $request, $id)
     {
-        //
+        $mod = Mod::findOrFail($id);
+        $mod->update($request->all());
+        $mod->save();
+
+        return response()->json($mod, 202);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Mod $mod)
+    public function destroy($id)
     {
-        //
+        $mod = Mod::destroy($id);
+
+        return request()->json($mod, 204);
     }
 }

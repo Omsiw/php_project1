@@ -7,7 +7,7 @@ use App\Http\Requests\OrderRequest;
 
 class OrderController
 {
-    public function showByUserId($id)
+    public function selectByUserId($id)
     {
         $order = Order::where('user_id', $id);
         

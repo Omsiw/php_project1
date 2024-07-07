@@ -7,7 +7,7 @@ use App\Http\Requests\OrderHistoryRequest;
 
 class OrderHistoryController
 {
-    public function showByUserId($id)
+    public function selectByUserId($id)
     {
         $orderHistory = OrderHistory::where('user_id', $id);
         

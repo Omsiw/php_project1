@@ -10,7 +10,7 @@ class DiscountController
     /**
      * Display a listing of the resource.
      */
-    public function showByGameId($id)
+    public function selectByGameId($id)
     {
         $discount = Discount::where('game_id', '==', $id);
 

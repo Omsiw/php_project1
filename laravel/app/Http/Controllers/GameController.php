@@ -3,60 +3,70 @@
 namespace App\Http\Controllers;
 
 use App\Models\Game;
-use Illuminate\Http\Request;
+use App\Http\Requests\GameRequest;
 
 class GameController
 {
-    public function index()
+    public function selectAll()
     {
-        //
+        $game = Game::paginate(9);
+        
+        return response()->json($game, 200);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function selectById($id)
     {
-        //
+        $game = Game::with('dls')->find($id);
+
+        return response()->json($game, 200);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function selectByUserId($id)
     {
-        //
+        $game = Game::user()->find($id);
+
+        return response()->json($game, 200);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Game $game)
+    public function selectByTagId($id)
     {
-        //
+        $game = Game::tag()->find($id);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Game $game)
+    public function selectByAuthorId($id)
     {
-        //
+        $game = Game::author()->find($id);
+
+        return response()->json($game, 200);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Game $game)
+    public function selectByPublisherId($id)
     {
-        //
+        $game = Game::publisher()->find($id);
+
+        return response()->json($game, 200);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Game $game)
+    public function create(GameRequest $request)
     {
-        //
+        $game = Game::create($request->all());
+
+        return response()->json($game, 201);
+    }
+
+    public function update(GameRequest $request, $id)
+    {
+        $game = Game::findOrFail($id);
+        $game->update($request->all());
+        $game->save();
+
+        return response()->json($game, 202);
+    }
+
+    public function destroy($id)
+    {
+        $game = Game::destroy($id);
+
+        return request()->json($game, 204);
     }
 }

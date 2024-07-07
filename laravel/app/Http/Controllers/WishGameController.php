@@ -14,7 +14,7 @@ class WishGameController
         return response()->json($wishGame, 201);
     }
 
-    public function showByUserId($id)
+    public function selectByUserId($id)
     {
         $wishGame = WishGame::where('user_id', '==', $id);
 
