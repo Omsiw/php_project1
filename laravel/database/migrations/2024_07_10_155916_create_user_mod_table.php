@@ -12,10 +12,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('user_mod', function (Blueprint $table) {
-            $table->id();
-            $table->string('user_id');
-            $table->string('mod_id');
-            $table->timestamps();
+            $table->id();            
+            $table->unsignedBiginteger('user_id');
+            $table->unsignedBiginteger('mod_id');
+
+
+            $table->foreign('user_id')->references('id')
+                 ->on('users')->onDelete('cascade');
+            $table->foreign('mod_id')->references('id')
+                ->on('mods')->onDelete('cascade');
         });
     }
 

@@ -12,10 +12,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('game_tag', function (Blueprint $table) {
-            $table->id();
-            $table->integer('game_id');
-            $table->integer('tag_id');
-            $table->timestamps();
+            $table->id();            
+            $table->unsignedBiginteger('game_id');
+            $table->unsignedBiginteger('tag_id');
+
+
+            $table->foreign('game_id')->references('id')
+                 ->on('games')->onDelete('cascade');
+            $table->foreign('tag_id')->references('id')
+                ->on('tags')->onDelete('cascade');
         });
     }
 

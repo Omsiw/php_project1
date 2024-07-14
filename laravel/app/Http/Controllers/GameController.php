@@ -16,7 +16,7 @@ class GameController
 
     public function selectById($id)
     {
-        $game = Game::with('dls')->find($id);
+        $game = Game::with(['dls', 'os', 'tag', 'author', 'publisher'])->find($id);
 
         return response()->json($game, 200);
     }
@@ -49,23 +49,61 @@ class GameController
 
     public function create(GameRequest $request)
     {
-        $game = Game::create($request->all());
+        $game = new Game();
+        $game->name = $request->name;
+        $game->cost = $request->cost;
+        $game->date_add = $request->date_add;
+        $game->info = $request->info;
+        $game->save();
+
+        $game->os()->attach($request->os_ids);
+        $game->tag()->attach($request->tag_ids);
+        $game->author()->attach($request->author_ids);
+        if ($request->publisher_ids == null){
+            $game->publisher()->attach($request->author_ids);
+        } else{
+            $game->publisher()->attach($request->publisher_ids);
+        }
 
         return response()->json($game, 201);
     }
 
-    public function update(GameRequest $request, $id)
+    public function update(GameRequest $request, int $id)
     {
         $game = Game::findOrFail($id);
-        $game->update($request->all());
+        $game->name = $request->name;
+        $game->cost = $request->cost;
+        $game->date_add = $request->date_add;
+        $game->info = $request->info;
         $game->save();
+
+        $game->os()->detach();
+        $game->tag()->detach();
+        $game->author()->detach();
+        $game->publisher()->detach();
+
+        $game->os()->attach($request->os_ids);
+        $game->tag()->attach($request->tag_ids);
+        $game->author()->attach($request->author_ids);
+        if ($request->publisher_ids == null){
+            $game->publisher()->attach($request->author_ids);
+        } else{
+            $game->publisher()->attach($request->publisher_ids);
+        }
 
         return response()->json($game, 202);
     }
 
-    public function destroy($id)
+    public function destroy(int $id)
     {
-        $game = Game::destroy($id);
+        $game = Game::find($id);
+        $game->user()->detach();
+        $game->os()->detach();
+        $game->tag()->detach();
+        $game->author()->detach();
+        $game->publisher()->detach();
+
+        $game->delete();
 
         return request()->json($game, 204);
     }

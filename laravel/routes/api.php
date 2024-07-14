@@ -19,85 +19,85 @@ use Illuminate\Support\Facades\Route;
 //user
 Route::post('/singIn', [UserController::class, 'singIn']);
 Route::post('/logIn', [UserController::class, 'logIn']);
-Route::get('/delete/{id}', [UserController::class, 'destroy']);
+Route::get('/userDelete/{id}', [UserController::class, 'destroy']);
 
 //game
-Route::get('/selectAll', [GameController::class, 'selectAll']);
-Route::get('/selectById/{id}', [GameController::class, 'selectById']);
-Route::get('/selectByTagId/{id}', [GameController::class, 'selectByTagId']);
-Route::get('/selectByUserId/{id}', [GameController::class, 'selectByUserId']);
-Route::get('/selectByAuthorId/{id}', [GameController::class, 'selectByAuthorId']);
-Route::get('/selectByPublisherId/{id}', [GameController::class, 'selectByPublisherId']);
-Route::post('/create', [GameController::class, 'create']);
-Route::post('/update', [GameController::class, 'update']);
-Route::get('/delete/{id}', [GameController::class, 'destroy']);
+Route::get('/gameSelectAll', [GameController::class, 'selectAll']);
+Route::get('/gameSelectById/{id}', [GameController::class, 'selectById']);
+Route::get('/gameSelectByTagId/{id}', [GameController::class, 'selectByTagId']);
+Route::get('/gameSelectByUserId/{id}', [GameController::class, 'selectByUserId']);
+Route::get('/gameSelectByAuthorId/{id}', [GameController::class, 'selectByAuthorId']);
+Route::get('/gameSelectByPublisherId/{id}', [GameController::class, 'selectByPublisherId']);
+Route::post('/gameCreate', [GameController::class, 'create']);
+Route::post('/gameUpdate', [GameController::class, 'update']);
+Route::get('/gameDelete/{id}', [GameController::class, 'destroy']);
 
 //dls
-Route::get('/selectById/{id}', [DLSController::class, 'selectById']);
-Route::get('/selectByUserId/{id}', [DLSController::class, 'selectByUserId']);
-Route::get('/selectByGameId/{id}', [DLSController::class, 'selectByGameId']);
-Route::get('/selectByAuthorId/{id}', [DLSController::class, 'selectByAuthorId']);
-Route::get('/selectByPublisherId/{id}', [DLSController::class, 'selectByPublisherId']);
-Route::post('/create', [DLSController::class, 'create']);
-Route::post('/update', [DLSController::class, 'update']);
-Route::get('/delete/{id}', [DLSController::class, 'destroy']);
+Route::get('/dlsSelectById/{id}', [DLSController::class, 'selectById']);
+Route::get('/dlsSelectByUserId/{id}', [DLSController::class, 'selectByUserId']);
+Route::get('/dlsSelectByGameId/{id}', [DLSController::class, 'selectByGameId']);
+Route::get('/dlsSelectByAuthorId/{id}', [DLSController::class, 'selectByAuthorId']);
+Route::get('/dlsSelectByPublisherId/{id}', [DLSController::class, 'selectByPublisherId']);
+Route::post('/dlsCreate', [DLSController::class, 'create']);
+Route::post('/dlsUpdate', [DLSController::class, 'update']);
+Route::get('/dlsDelete/{id}', [DLSController::class, 'destroy']);
 
 //mod
-Route::get('/selectById/{id}', [ModController::class, 'selectById']);
-Route::get('/selectByUserId/{id}', [ModController::class, 'selectByUserId']);
-Route::get('/selectByGameId/{id}', [ModController::class, 'selectByGameId']);
-Route::get('/selectByAuthorId/{id}', [ModController::class, 'selectByAuthorId']);
-Route::post('/create', [ModController::class, 'create']);
-Route::post('/update', [ModController::class, 'update']);
+Route::get('/modSelectById/{id}', [ModController::class, 'selectById']);
+Route::get('/modSelectByUserId/{id}', [ModController::class, 'selectByUserId']);
+Route::get('/modSelectByGameId/{id}', [ModController::class, 'selectByGameId']);
+Route::get('/modSelectByAuthorId/{id}', [ModController::class, 'selectByAuthorId']);
+Route::post('/modCreate', [ModController::class, 'create']);
+Route::post('/modUpdate', [ModController::class, 'update']);
 Route::get('/delete/{id}', [ModController::class, 'destroy']);
 
 //author
-Route::post('/create', [AuthorController::class, 'create']);
-Route::post('/update', [AuthorController::class, 'update']);
-Route::get('/delete/{id}', [AuthorController::class, 'destroy']);
+Route::post('/authorCreate', [AuthorController::class, 'create']);
+Route::post('/authorUpdate', [AuthorController::class, 'update']);
+Route::get('/authorDelete/{id}', [AuthorController::class, 'destroy']);
 
 //publisher
-Route::post('/create', [PublisherController::class, 'create']);
-Route::post('/update', [PublisherController::class, 'update']);
-Route::get('/delete/{id}', [PublisherController::class, 'destroy']);
+Route::post('/publCreate', [PublisherController::class, 'create']);
+Route::post('/publUpdate', [PublisherController::class, 'update']);
+Route::get('/publDelete/{id}', [PublisherController::class, 'destroy']);
 
 //tag
-Route::post('/create', [TagController::class, 'create']);
-Route::post('/update', [TagController::class, 'update']);
-Route::get('/delete/{id}', [TagController::class, 'destroy']);
+Route::post('/tagCreate', [TagController::class, 'create']);
+Route::post('/tagUpdate', [TagController::class, 'update']);
+Route::get('/tagDelete/{id}', [TagController::class, 'destroy']);
 
 //os
-Route::post('/create', [OSController::class, 'create']);
-Route::post('/update', [OSController::class, 'update']);
-Route::get('/delete/{id}', [OSController::class, 'destroy']);
+Route::post('/osCreate', [OSController::class, 'create']);
+Route::post('/osUpdate', [OSController::class, 'update']);
+Route::get('/osDelete/{id}', [OSController::class, 'destroy']);
 
 //wish game
-Route::get('/selectByUserId/{id}', [WishGameController::class, 'selectByUserId']);
-Route::post('/create', [WishGameController::class, 'create']);
-Route::get('/delete/{id}', [WishGameController::class, 'destroy']);
+Route::get('/whGameSelectByUserId/{id}', [WishGameController::class, 'selectByUserId']);
+Route::post('/whGameCreate', [WishGameController::class, 'create']);
+Route::get('/whGameDelete/{id}', [WishGameController::class, 'destroy']);
 
 //discount
-Route::get('/selectByGameId/{id}', [DiscountController::class, 'selectByGameId']);
-Route::post('/create', [DiscountController::class, 'create']);
-Route::post('/update', [DiscountController::class, 'update']);
-Route::get('/delete/{id}', [DiscountController::class, 'destroy']);
+Route::get('/discountSelectByGameId/{id}', [DiscountController::class, 'selectByGameId']);
+Route::post('/discountCreate', [DiscountController::class, 'create']);
+Route::post('/discountUpdate', [DiscountController::class, 'update']);
+Route::get('/discountDelete/{id}', [DiscountController::class, 'destroy']);
 
 //order
-Route::get('/selectByUserId/{id}', [OrderController::class, 'selectByUserId']);
-Route::post('/create', [OrderController::class, 'create']);
-Route::post('/update', [OrderController::class, 'update']);
-Route::get('/delete/{id}', [OrderController::class, 'destroy']);
+Route::get('/OrderSelectByUserId/{id}', [OrderController::class, 'selectByUserId']);
+Route::post('/OrderCreate', [OrderController::class, 'create']);
+Route::post('/OrderUpdate', [OrderController::class, 'update']);
+Route::get('/OrderDelete/{id}', [OrderController::class, 'destroy']);
 
 //order history
-Route::get('/selectByUserId/{id}', [OrderHistoryController::class, 'selectByUserId']);
-Route::post('/create', [OrderHistoryController::class, 'create']);
-Route::post('/update', [OrderHistoryController::class, 'update']);
-Route::get('/delete/{id}', [OrderHistoryController::class, 'destroy']);
+Route::get('/OrdHisSelectByUserId/{id}', [OrderHistoryController::class, 'selectByUserId']);
+Route::post('/OrdHisCreate', [OrderHistoryController::class, 'create']);
+Route::post('/OrdHisUpdate', [OrderHistoryController::class, 'update']);
+Route::get('/OrdHisDelete/{id}', [OrderHistoryController::class, 'destroy']);
 
 //revie
-Route::get('/selectByUserId/{id}', [RevieController::class, 'selectByUserId']);
-Route::get('/selectByGameId/{id}', [RevieController::class, 'selectByUserId']);
-Route::post('/create', [RevieController::class, 'create']);
-Route::post('/update', [RevieController::class, 'update']);
-Route::get('/delete/{id}', [RevieController::class, 'destroy']);
+Route::get('/revieSelectByUserId/{id}', [RevieController::class, 'selectByUserId']);
+Route::get('/revieSelectByGameId/{id}', [RevieController::class, 'selectByUserId']);
+Route::post('/revieCreate', [RevieController::class, 'create']);
+Route::post('/revieUpdate', [RevieController::class, 'update']);
+Route::get('/revieDelete/{id}', [RevieController::class, 'destroy']);
 

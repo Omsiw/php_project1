@@ -11,7 +11,7 @@ class User extends Model
 {
     use HasFactory;
     
-    protected $fillable = ['name','password'];
+    protected $fillable = ['login', 'name', 'password', 'email'];
 
     public function order(): HasMany{
         return $this->hasMany(Order::class);

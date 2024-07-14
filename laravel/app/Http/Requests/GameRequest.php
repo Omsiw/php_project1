@@ -25,7 +25,11 @@ class GameRequest extends FormRequest
             'name' => 'min:3|max:20|string',
             'cost' => 'integer',
             'date_add' => 'date',
-            'info' => 'string'
+            'info' => 'string',
+            'os_ids' => 'array',
+            'tag_ids' => 'array',
+            'author_ids' => 'array',
+            'publisher_ids' => 'array|nullable'
         ];
     }
 }
