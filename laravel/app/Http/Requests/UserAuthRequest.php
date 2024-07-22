@@ -4,14 +4,14 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class OSRequest extends FormRequest
+class UserAuthRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,10 @@ class OSRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'min:3|max:10|string'
+            'login' => 'min:3|max:10|string|unique:App\Models\User,login',
+            'name' => 'min:3|max:10|string|unique:App\Models\User,name',
+            'password' => 'min:8|max:16|string',
+            'email' => 'email:rfc,dns|unique:App\Models\User,email'
         ];
     }
 }
