@@ -22,7 +22,7 @@ class AuthorRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'min:3|max:10|string|unique:App\Models\Author,name'
+            'name' => 'min:3|max:10|string'
         ];
     }
 }

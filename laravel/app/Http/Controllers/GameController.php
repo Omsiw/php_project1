@@ -6,21 +6,16 @@ use App\Models\Game;
 use App\Http\Requests\GameRequest;
 
 class GameController
-{
-    public function selectAll()
-    {
-        $game = Game::paginate(9);
-        
-        return response()->json($game, 200);
+{    
+    public function item($id){
+        $item = Game::findOrFail($id);
+        return response()->json($item);
     }
 
-    public function selectById($id)
-    {
-        $game = Game::with(['dls', 'os', 'tag', 'author', 'publisher'])->find($id);
-
-        return response()->json($game, 200);
+    public function list(){
+        $items = Game::all();
+        return response()->json($items);
     }
-
     public function selectByUserId($id)
     {
         $game = Game::user()->find($id);
@@ -49,12 +44,12 @@ class GameController
 
     public function create(GameRequest $request)
     {
-        $game = new Game();
-        $game->name = $request->name;
-        $game->cost = $request->cost;
-        $game->date_add = $request->date_add;
-        $game->info = $request->info;
-        $game->save();
+        $game = Game::create([
+            "name" => $request->name,
+            "cost" => $request->cost,
+            "date_add" => $request->date_add,
+            "info" => $request->info
+        ]);
 
         $game->os()->attach($request->os_ids);
         $game->tag()->attach($request->tag_ids);
@@ -71,11 +66,12 @@ class GameController
     public function update(GameRequest $request, int $id)
     {
         $game = Game::findOrFail($id);
-        $game->name = $request->name;
-        $game->cost = $request->cost;
-        $game->date_add = $request->date_add;
-        $game->info = $request->info;
-        $game->save();
+        $game->update([ 
+            "name" => $request->name,
+            "cost" => $request->cost,
+            "date_add" => $request->date_add,
+            "info" => $request->info
+        ]);
 
         $game->os()->detach();
         $game->tag()->detach();

@@ -5,26 +5,18 @@ namespace App\Http\Controllers;
 use App\Models\WishGame;
 use App\Http\Requests\WishGameRequest;
 
-class WishGameController
+class WishGameController extends BaseController
 {
-    public function create(WishGameRequest $request)
-    {
-        $wishGame = WishGame::create($request->all());
-
-        return response()->json($wishGame, 201);
-    }
+    protected $model = WishGame::class;    
 
     public function selectByUserId($id)
     {
-        $wishGame = WishGame::where('user_id', '==', $id);
+        $wishGame = WishGame::where('user_id', $id);
 
         return response()->json($wishGame, 200);
-    }
-
-    public function destroy($id)
-    {
-        $wishGame = WishGame::destroy($id);
-        
-        return response()->json($wishGame, 204);
+    }    
+    
+    protected function getValidationRules(){
+         return (new WishGameRequest())->rules();
     }
 }

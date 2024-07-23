@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Revie;
 use App\Http\Requests\RevieRequest;
 
-class RevieController
+class RevieController extends BaseController
 {
+    protected $model = Revie::class;
+    
     public function selectByGameId($id)
     {
         $revie = Revie::where('game_id', $id);
@@ -21,26 +23,7 @@ class RevieController
         return response()->json($revie, 200);
     }
 
-    public function create(RevieRequest $request)
-    {
-        $revie = Revie::create($request->all());
-
-        return response()->json($revie, 201);
-    }
-
-    public function update(RevieRequest $request, $id)
-    {
-        $revie = Revie::findOrFail($id);
-        $revie->update($request->all());
-        $revie->save();
-
-        return response()->json($revie, 202);
-    }
-
-    public function destroy($id)
-    {
-        $revie = Revie::destroy($id);
-
-        return response()->json($revie, 204);
+    protected function getValidationRules(){
+         return (new RevieRequest())->rules();
     }
 }

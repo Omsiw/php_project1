@@ -11,14 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('dls', function (Blueprint $table) {
+        Schema::create('o_s', function (Blueprint $table) {
             $table->id();
-            $table->integer('game_id');
             $table->string('name');
-            $table->string('info');
-            $table->string('image_path');
-            $table->integer('cost');
-            $table->dateTime('date_add');
             $table->timestamps();
         });
     }
@@ -28,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('dls');
+        Schema::dropIfExists('o_s');
     }
 };

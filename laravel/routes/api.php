@@ -24,8 +24,8 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::get('/userDelete/{id}', [UserController::class, 'destroy']);
 
     //game
-    Route::get('/gameSelectAll', [GameController::class, 'selectAll']);
-    Route::get('/gameSelectById/{id}', [GameController::class, 'selectById']);
+    Route::get('/gameSelect', [GameController::class, 'list']);
+    Route::get('/gameSelect/{id}', [GameController::class, 'item']);
     Route::get('/gameSelectByTagId/{id}', [GameController::class, 'selectByTagId']);
     Route::get('/gameSelectByUserId/{id}', [GameController::class, 'selectByUserId']);
     Route::get('/gameSelectByAuthorId/{id}', [GameController::class, 'selectByAuthorId']);
@@ -35,7 +35,7 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::get('/gameDelete/{id}', [GameController::class, 'destroy']);
 
     //dls
-    Route::get('/dlsSelectById/{id}', [DLSController::class, 'selectById']);
+    Route::get('/dlsSelectById/{id}', [DLSController::class, 'item']);
     Route::get('/dlsSelectByUserId/{id}', [DLSController::class, 'selectByUserId']);
     Route::get('/dlsSelectByGameId/{id}', [DLSController::class, 'selectByGameId']);
     Route::get('/dlsSelectByAuthorId/{id}', [DLSController::class, 'selectByAuthorId']);
@@ -45,7 +45,7 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::get('/dlsDelete/{id}', [DLSController::class, 'destroy']);
 
     //mod
-    Route::get('/modSelectById/{id}', [ModController::class, 'selectById']);
+    Route::get('/modSelectById/{id}', [ModController::class, 'item']);
     Route::get('/modSelectByUserId/{id}', [ModController::class, 'selectByUserId']);
     Route::get('/modSelectByGameId/{id}', [ModController::class, 'selectByGameId']);
     Route::get('/modSelectByAuthorId/{id}', [ModController::class, 'selectByAuthorId']);
@@ -55,7 +55,7 @@ Route::middleware('auth:sanctum')->group(function(){
 
     //author
     Route::post('/authorCreate', [AuthorController::class, 'create']);
-    Route::post('/authorUpdate', [AuthorController::class, 'update']);
+    Route::post('/authorUpdate/{id}', [AuthorController::class, 'update']);
     Route::get('/authorDelete/{id}', [AuthorController::class, 'destroy']);
 
     //publisher

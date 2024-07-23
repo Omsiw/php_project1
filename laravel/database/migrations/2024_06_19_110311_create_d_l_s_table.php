@@ -11,9 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('os', function (Blueprint $table) {
+        Schema::create('d_l_s', function (Blueprint $table) {
             $table->id();
+            $table->integer('game_id');
             $table->string('name');
+            $table->string('info');
+            $table->string('image_path');
+            $table->integer('cost');
+            $table->dateTime('date_add');
             $table->timestamps();
         });
     }
@@ -23,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('os');
+        Schema::dropIfExists('d_l_s');
     }
 };
