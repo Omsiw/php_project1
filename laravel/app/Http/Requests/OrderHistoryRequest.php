@@ -23,8 +23,7 @@ class OrderHistoryRequest extends FormRequest
     {
         return [
             'order_id' => 'integer',
-            'user_id' => 'integer',
-            'date' => 'date'
+            'user_id' => 'integer'
         ];
     }
 }

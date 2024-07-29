@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Tag>
  */
-class UserFactory extends Factory
+class TagFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,10 +17,7 @@ class UserFactory extends Factory
     public function definition(): array
     {
         return [
-            'login' => fake()->text(20),
-            'name' => fake()->text(20),
-            'password' => fake()->text(20),
-            'emall' => fake()->email()
+            'name' => fake()->name()
         ];
     }
 }

@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name')->unique();
             $table->integer('cost');
-            $table->string('image_path');
+            $table->string('image_path')->nullable(true);
             $table->dateTime('date_add');
             $table->string('info');
             $table->double('rating')->nullable(true);

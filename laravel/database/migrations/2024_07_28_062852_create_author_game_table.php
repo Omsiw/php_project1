@@ -11,16 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('game_os', function (Blueprint $table) {
+        Schema::create('author_game', function (Blueprint $table) {
             $table->id();            
+            $table->unsignedBiginteger('author_id');
             $table->unsignedBiginteger('game_id');
-            $table->unsignedBiginteger('os_id');
 
 
+            $table->foreign('author_id')->references('id')
+                ->on('authors')->onDelete('cascade');
             $table->foreign('game_id')->references('id')
                  ->on('games')->onDelete('cascade');
-            $table->foreign('os_id')->references('id')
-                ->on('os')->onDelete('cascade');
         });
     }
 
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('game_os');
+        Schema::dropIfExists('author_game');
     }
 };

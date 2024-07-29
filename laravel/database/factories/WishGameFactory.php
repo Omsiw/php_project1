@@ -2,12 +2,14 @@
 
 namespace Database\Factories;
 
+use App\Models\Game;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\WishGame>
  */
-class UserFactory extends Factory
+class WishGameFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,10 +19,9 @@ class UserFactory extends Factory
     public function definition(): array
     {
         return [
-            'login' => fake()->text(20),
-            'name' => fake()->text(20),
-            'password' => fake()->text(20),
-            'emall' => fake()->email()
+            'user_id' => User::factory(),
+            'game_id' => Game::factory(),
+            'name' => fake()->name()
         ];
     }
 }

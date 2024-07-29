@@ -46,7 +46,7 @@ class Game extends Model
     }
 
     public function tag(): BelongsToMany{
-        return $this->belongsToMany(Author::class);
+        return $this->belongsToMany(Tag::class);
     }
     
     public function OS(): BelongsToMany{
