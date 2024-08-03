@@ -39,7 +39,7 @@ class BaseController
 
         $item = $this->model::findOrFail($id);
         $item->update($request->all());
-        return response()->json($item);
+        return response()->json($item, 202);
     }
 
     public function destroy($id){

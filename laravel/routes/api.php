@@ -31,7 +31,7 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::get('/gameSelectByAuthorId/{id}', [GameController::class, 'selectByAuthorId']);
     Route::get('/gameSelectByPublisherId/{id}', [GameController::class, 'selectByPublisherId']);
     Route::post('/gameCreate', [GameController::class, 'create']);
-    Route::post('/gameUpdate', [GameController::class, 'update']);
+    Route::post('/gameUpdate/{id}', [GameController::class, 'update']);
     Route::get('/gameDelete/{id}', [GameController::class, 'destroy']);
 
     //dls
@@ -41,7 +41,7 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::get('/dlsSelectByAuthorId/{id}', [DLSController::class, 'selectByAuthorId']);
     Route::get('/dlsSelectByPublisherId/{id}', [DLSController::class, 'selectByPublisherId']);
     Route::post('/dlsCreate', [DLSController::class, 'create']);
-    Route::post('/dlsUpdate', [DLSController::class, 'update']);
+    Route::post('/dlsUpdate/{id}', [DLSController::class, 'update']);
     Route::get('/dlsDelete/{id}', [DLSController::class, 'destroy']);
 
     //mod
@@ -50,7 +50,7 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::get('/modSelectByGameId/{id}', [ModController::class, 'selectByGameId']);
     Route::get('/modSelectByAuthorId/{id}', [ModController::class, 'selectByAuthorId']);
     Route::post('/modCreate', [ModController::class, 'create']);
-    Route::post('/modUpdate', [ModController::class, 'update']);
+    Route::post('/modUpdate/{id}', [ModController::class, 'update']);
     Route::get('/delete/{id}', [ModController::class, 'destroy']);
 
     //author
@@ -60,17 +60,17 @@ Route::middleware('auth:sanctum')->group(function(){
 
     //publisher
     Route::post('/publCreate', [PublisherController::class, 'create']);
-    Route::post('/publUpdate', [PublisherController::class, 'update']);
+    Route::post('/publUpdate/{id}', [PublisherController::class, 'update']);
     Route::get('/publDelete/{id}', [PublisherController::class, 'destroy']);
 
     //tag
     Route::post('/tagCreate', [TagController::class, 'create']);
-    Route::post('/tagUpdate', [TagController::class, 'update']);
+    Route::post('/tagUpdate/{id}', [TagController::class, 'update']);
     Route::get('/tagDelete/{id}', [TagController::class, 'destroy']);
 
     //os
     Route::post('/osCreate', [OSController::class, 'create']);
-    Route::post('/osUpdate', [OSController::class, 'update']);
+    Route::post('/osUpdate/{id}', [OSController::class, 'update']);
     Route::get('/osDelete/{id}', [OSController::class, 'destroy']);
 
     //wish game
@@ -81,25 +81,25 @@ Route::middleware('auth:sanctum')->group(function(){
     //discount
     Route::get('/discountSelectByGameId/{id}', [DiscountController::class, 'selectByGameId']);
     Route::post('/discountCreate', [DiscountController::class, 'create']);
-    Route::post('/discountUpdate', [DiscountController::class, 'update']);
+    Route::post('/discountUpdate/{id}', [DiscountController::class, 'update']);
     Route::get('/discountDelete/{id}', [DiscountController::class, 'destroy']);
 
     //order
     Route::get('/orderSelectByUserId/{id}', [OrderController::class, 'selectByUserId']);
     Route::post('/orderCreate', [OrderController::class, 'create']);
-    Route::post('/orderUpdate', [OrderController::class, 'update']);
+    Route::post('/orderUpdate/{id}', [OrderController::class, 'update']);
     Route::get('/orderDelete/{id}', [OrderController::class, 'destroy']);
 
     //order history
     Route::get('/OrdHisSelectByUserId/{id}', [OrderHistoryController::class, 'selectByUserId']);
     Route::post('/OrdHisCreate', [OrderHistoryController::class, 'create']);
-    Route::post('/OrdHisUpdate', [OrderHistoryController::class, 'update']);
+    Route::post('/OrdHisUpdate/{id}', [OrderHistoryController::class, 'update']);
     Route::get('/OrdHisDelete/{id}', [OrderHistoryController::class, 'destroy']);
 
     //revie
     Route::get('/revieSelectByUserId/{id}', [RevieController::class, 'selectByUserId']);
     Route::get('/revieSelectByGameId/{id}', [RevieController::class, 'selectByUserId']);
     Route::post('/revieCreate', [RevieController::class, 'create']);
-    Route::post('/revieUpdate', [RevieController::class, 'update']);
+    Route::post('/revieUpdate/{id}', [RevieController::class, 'update']);
     Route::get('/revieDelete/{id}', [RevieController::class, 'destroy']);
 });
