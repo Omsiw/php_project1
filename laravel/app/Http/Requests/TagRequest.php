@@ -22,7 +22,7 @@ class TagRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'min:3|max:10|string|unique:App\Models\Tag,name'
+            'name' => 'min:3|string'
         ];
     }
 }

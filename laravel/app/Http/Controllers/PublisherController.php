@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Publisher;
 use App\Http\Requests\PublisherRequest;
 
-class PublisherController extends SpecialController
+class PublisherController extends BaseController
 {
     protected $model = Publisher::class;    
 

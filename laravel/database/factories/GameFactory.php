@@ -19,7 +19,7 @@ class GameFactory extends Factory
         return [
             'name' => fake()->name(),
             'cost' => fake()->numberBetween(),
-            'date_add' => fake()->dateTime(),
+            'date_add' => fake()->dateTime()->format('m/d/Y H:i:s'),
             'info' => fake()->text()
         ];
     }

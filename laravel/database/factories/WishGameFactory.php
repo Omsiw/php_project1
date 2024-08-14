@@ -19,8 +19,8 @@ class WishGameFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id' => User::factory(),
-            'game_id' => Game::factory(),
+            'user_id' => User::factory()->create()->id,
+            'game_id' => Game::factory()->create()->id,
             'name' => fake()->name()
         ];
     }

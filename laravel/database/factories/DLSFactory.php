@@ -18,10 +18,11 @@ class DLSFactory extends Factory
     public function definition(): array
     {
         return [
-            'game_id' => Game::factory(),
+            'game_id' => Game::factory()->create()->id,
             'name' => fake()->name(),
             'info' => fake()->text(),
-            'cost' => fake()->numberBetween()
+            'cost' => fake()->numberBetween(),
+            'date_add' => fake()->dateTime()->format('m/d/Y H:i:s')
         ];
     }
 }

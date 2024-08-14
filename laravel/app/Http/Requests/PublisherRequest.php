@@ -22,7 +22,7 @@ class PublisherRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'min:3|max:10|string|unique:App\Models\Publisher,name'
+            'name' => 'min:3|string'
         ];
     }
 }

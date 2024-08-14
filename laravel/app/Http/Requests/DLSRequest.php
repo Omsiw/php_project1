@@ -25,7 +25,8 @@ class DLSRequest extends FormRequest
             'game_id' => 'integer',
             'name' => 'min:3|max:20|string',
             'info' => 'string',
-            'cost' => 'integer'
+            'cost' => 'integer',
+            'date_add' => 'date'
         ];
     }
 }

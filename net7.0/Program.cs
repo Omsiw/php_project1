@@ -1,4 +1,7 @@
 
+using ApiForPhoto.Abstract;
+using ApiForPhoto.Service;
+
 namespace ApiForPhoto
 {
     public class Program
@@ -10,6 +13,7 @@ namespace ApiForPhoto
             // Add services to the container.
 
             builder.Services.AddControllers();
+            builder.Services.AddScoped<IService, PostgreService>();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();

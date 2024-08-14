@@ -19,9 +19,9 @@ class OrderHistoryFactory extends Factory
     public function definition(): array
     {
         return [
-            'order_id' => Order::factory(), 
-            'user_id' => User::factory(), 
-            'date' => fake()->dateTime()
+            'order_id' => Order::factory()->create()->id, 
+            'user_id' => User::factory()->create()->id, 
+            'date' => fake()->dateTime()->format('m/d/Y H:i:s')
         ];
     }
 }

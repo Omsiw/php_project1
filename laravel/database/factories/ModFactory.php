@@ -19,11 +19,11 @@ class ModFactory extends Factory
     public function definition(): array
     {
         return [
-            'game_id' => Game::factory(),
-            'author_id' => Author::factory(),
+            'game_id' => Game::factory()->create()->id,
+            'author_id' => Author::factory()->create()->id,
             'name' => fake()->name(),
             'info' => fake()->text(),
-            'date_add' => fake()->dateTime()
+            'date_add' => fake()->dateTime()->format('m/d/Y H:i:s')
         ];
     }
 }

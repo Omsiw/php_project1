@@ -18,9 +18,9 @@ class UserFactory extends Factory
     {
         return [
             'login' => fake()->text(20),
-            'name' => fake()->text(20),
-            'password' => fake()->text(20),
-            'emall' => fake()->email()
+            'name' => fake()->text(20) . fake()->numberBetween(),
+            'email' => fake()->email(),
+            'password' => fake()->text(20)
         ];
     }
 }

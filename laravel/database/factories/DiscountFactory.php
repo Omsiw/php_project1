@@ -27,10 +27,10 @@ class DiscountFactory extends Factory
         }
 
         return [
-            'game_id' => Game::factory(),
-            'date_start' => $dateStart,
-            'date_end' => $dateEnd,
-            'percent'
+            'game_id' => Game::factory()->create()->id,
+            'date_start' => $dateStart->format('m/d/Y H:i:s'),
+            'date_end' => $dateEnd->format('m/d/Y H:i:s'),
+            'percent' => fake()->numberBetween(10,90)
         ];
     }
 }

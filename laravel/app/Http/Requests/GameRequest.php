@@ -25,6 +25,7 @@ class GameRequest extends FormRequest
             'name' => 'min:3|max:20|string',
             'cost' => 'integer',
             'info' => 'string',
+            'date_add' => 'date',
             'o_s_ids' => 'array',
             'tag_ids' => 'array',
             'author_ids' => 'array',

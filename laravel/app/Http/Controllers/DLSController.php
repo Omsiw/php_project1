@@ -5,10 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\DLS;
 use App\Http\Requests\DLSRequest;
 
-class DLSController extends SpecialController
+class DLSController extends BaseController
 {
     protected $model = DLS::class;    
-    
+
     public function selectByGameId($id)
     {
         $dls = DLS::game()->find($id);

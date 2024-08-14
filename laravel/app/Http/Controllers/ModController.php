@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Requests\ModRequest;
 
-class ModController extends SpecialController
+class ModController extends BaseController
 {
     protected $model = Mod::class;    
 

@@ -16,7 +16,7 @@ return new class extends Migration
             $table->integer('game_id');
             $table->string('name');
             $table->string('info');
-            $table->string('image_path');
+            $table->string('image_path')->nullable(true);
             $table->integer('cost');
             $table->dateTime('date_add');
             $table->timestamps();

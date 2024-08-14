@@ -19,8 +19,8 @@ class RevieFactory extends Factory
     public function definition(): array
     {
         return [
-            'game_id' => Game::factory(),
-            'user_id' => User::factory(),
+            'game_id' => Game::factory()->create()->id,
+            'user_id' => User::factory()->create()->id,
             'rate' => fake()->numberBetween(0,10)
         ];
     }
