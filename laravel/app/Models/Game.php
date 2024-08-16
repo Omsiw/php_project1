@@ -33,6 +33,10 @@ class Game extends Model
         return $this->hasMany(Mod::class);
     }
 
+    public function revie(): HasMany{
+        return $this->hasMany(Revie::class);
+    }
+
     public function user(): BelongsToMany{
         return $this->belongsToMany(User::class);
     }

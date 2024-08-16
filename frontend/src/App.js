@@ -1,54 +1,54 @@
-import React  from 'react';
-import logo from './logo.jpg';
-import {Flex, Layout } from 'antd';
+import React, { useState } from 'react';
+import { Carousel } from 'react-bootstrap';
+import Header from './Header';
 import './App.css';
 
-const { Header, Footer, Sider, Content } = Layout;
-const headerStyle = {
-  textAlign: 'center',
-  color: '#fff',
-  height: 64,
-  paddingInline: 48,
-  lineHeight: '64px',
-  backgroundColor: '#4096ff',
-};
-const contentStyle = {
-  textAlign: 'center',
-  minHeight: 120,
-  lineHeight: '120px',
-  color: '#fff',
-  backgroundColor: '#0958d9',
-};
-const siderStyle = {
-  textAlign: 'center',
-  lineHeight: '120px',
-  color: '#fff',
-  backgroundColor: '#1677ff',
-};
-const footerStyle = {
-  textAlign: 'center',
-  color: '#fff',
-  backgroundColor: '#4096ff',
-};
-const layoutStyle = {
-  borderRadius: 8,
-  overflow: 'hidden',
-  width: 'calc(50% - 8px)',
-  maxWidth: 'calc(50% - 8px)',
-};
+const games = [
+  {
+    name: 'Game 1',
+    description: 'Small description of Game 1',
+    imageUrl: 'https://img3.akspic.ru/previews/8/8/0/5/6/165088/165088-retrovejv-stil_retro-retrofuturizm-synthwave-atmosfera-550x310.jpg',
+    link: 'https://game1.com'
+  },
+  {
+    name: 'Game 2',
+    description: 'Small description of Game 2',
+    imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQoXl0BY5i4TIGoo_xERhp9G9oCxnxmozXrig&s',
+    link: 'https://game2.com'
+  }
+]
 
-function App() {
+function App() {  
+  const [index, setIndex] = useState(0);
+
+  const handleSelect = (selectedIndex, e) => {
+    setIndex(selectedIndex);
+  };
+
+  const handleGameClick = (link) => {
+    window.location.href = link;
+  };
+
   return (
-    <Layout style={layoutStyle}>
-      <Header style={headerStyle}>Header</Header>
-      <Layout>
-        <Sider width="25%" style={siderStyle}>
-          Sider
-        </Sider>
-        <Content style={contentStyle}>Content</Content>
-      </Layout>
-      <Footer style={footerStyle}>Footer</Footer>
-    </Layout>
+    <div>
+      <Header />
+      <Carousel activeIndex={index} onSelect={handleSelect} indicators={false}>
+      {games.map((game, idx) => (
+        <Carousel.Item key={idx} onClick={() => handleGameClick(game.link)}>
+          <img
+            className="d-block w-100"
+            src={game.imageUrl}
+            alt={game.name}
+            style={{ filter: index === idx ? 'none' : 'brightness(50%)', cursor: 'pointer' }}
+          />
+          <Carousel.Caption>
+            <h3>{game.name}</h3>
+            <p>{game.description}</p>
+          </Carousel.Caption>
+        </Carousel.Item>
+      ))}
+    </Carousel>
+    </div>
   );
 }
 

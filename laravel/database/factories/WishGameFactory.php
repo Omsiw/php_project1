@@ -20,8 +20,7 @@ class WishGameFactory extends Factory
     {
         return [
             'user_id' => User::factory()->create()->id,
-            'game_id' => Game::factory()->create()->id,
-            'name' => fake()->name()
+            'game_id' => Game::factory()->create()->id
         ];
     }
 }

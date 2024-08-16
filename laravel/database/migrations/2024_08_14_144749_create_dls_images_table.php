@@ -11,14 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('dls_images', function (Blueprint $table) {
             $table->id();
-            $table->string('login')->unique();
-            $table->string('name')->unique();
-            $table->string('email')->unique();
-            $table->string('password');
-            $table->string('image_path')->nullable(true);
+            $table->integer('dls_id');
+            $table->string('image_path');
             $table->timestamps();
+            
+            $table->foreign('dls_id')->references('id')
+                ->on('d_l_s')->onDelete('cascade');
         });
     }
 
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('dls_images');
     }
 };

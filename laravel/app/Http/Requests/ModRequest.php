@@ -25,7 +25,8 @@ class ModRequest extends FormRequest
             'game_id' => 'integer', 
             'author_id' => 'integer', 
             'name' => 'min:3|max:20|string', 
-            'info' => 'string', 
+            'info' => 'string',
+            'date_add' => 'date'
         ];
     }
 }

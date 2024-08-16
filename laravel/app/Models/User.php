@@ -27,6 +27,10 @@ class User extends Authenticatable
         return $this->hasMany(WishGame::class);
     }
 
+    public function revie(): HasMany{
+        return $this->hasMany(Revie::class);
+    }
+
     public function game(): BelongsToMany{
         return $this->belongsToMany(Game::class);
     }

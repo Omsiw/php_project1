@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Author;
+use App\Models\Game;
 use App\Models\Mod;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -14,21 +17,21 @@ class ModController extends BaseController
 
     public function selectByGameId($id)
     {
-        $mod = Mod::game()->find($id);
+        $mod = Game::find($id)->mod();
         
         return response()->json($mod, 200);
     }
 
     public function selectByUserId($id)
     {
-        $mod = Mod::user()->find($id);
+        $mod = User::find($id)->mod();
 
         return response()->json($mod, 200);
     }
 
     public function selectByAuthorId($id)
     {
-        $mod = Mod::author()->find($id);
+        $mod = Author::find($id)->mod();
 
         return response()->json($mod, 200);
     }
@@ -45,7 +48,7 @@ class ModController extends BaseController
             'author_id' => $request->author_id, 
             'name' => $request->name, 
             'info' => $request->info, 
-            'date_add' => Carbon::now()
+            'date_add' => $request->date_add
         ]);
 
         return response()->json($item, 201);

@@ -51,7 +51,7 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::get('/modSelectByAuthorId/{id}', [ModController::class, 'selectByAuthorId']);
     Route::post('/modCreate', [ModController::class, 'create']);
     Route::post('/modUpdate/{id}', [ModController::class, 'update']);
-    Route::get('/delete/{id}', [ModController::class, 'destroy']);
+    Route::get('/modDelete/{id}', [ModController::class, 'destroy']);
 
     //author
     Route::post('/authorCreate', [AuthorController::class, 'create']);

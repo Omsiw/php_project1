@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Game;
 use App\Models\Revie;
 use App\Http\Requests\RevieRequest;
+use App\Models\User;
 
 class RevieController extends BaseController
 {
@@ -11,14 +13,14 @@ class RevieController extends BaseController
     
     public function selectByGameId($id)
     {
-        $revie = Revie::where('game_id', $id);
+        $revie = Game::find($id)->revie();
 
         return response()->json($revie, 200);
     }
     
     public function selectByUserId($id)
     {
-        $revie = Revie::where('user_id', $id);
+        $revie = User::find($id)->revie();
 
         return response()->json($revie, 200);
     }

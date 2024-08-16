@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Author;
 use App\Models\Game;
+use App\Models\Publisher;
+use App\Models\Tag;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -20,28 +24,28 @@ class GameController extends BaseController
 
     public function selectByUserId($id)
     {
-        $game = Game::user()->find($id);
+        $game = User::find($id)->game();
 
         return response()->json($game, 200);
     }
 
     public function selectByTagId($id)
     {
-        $game = Game::tag()->find($id);
+        $game = Tag::find($id)->game();
 
         return response()->json($game, 200);
     }
 
     public function selectByAuthorId($id)
     {
-        $game = Game::author()->find($id);
+        $game = Author::find($id)->game();
 
         return response()->json($game, 200);
     }
 
     public function selectByPublisherId($id)
     {
-        $game = Game::publisher()->find($id);
+        $game = Publisher::find($id)->game();
 
         return response()->json($game, 200);
     }
@@ -83,6 +87,7 @@ class GameController extends BaseController
         $game->update([ 
             "name" => $request->name,
             "cost" => $request->cost,
+            "date_add" => $request->date_add,
             "info" => $request->info
         ]);
 
@@ -114,7 +119,7 @@ class GameController extends BaseController
 
         $game->delete();
 
-        return request()->json($game, 204);
+        return response()->json($game, 204);
     }
 
     
