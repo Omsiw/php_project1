@@ -1,0 +1,36 @@
+.game-card {
+  background-color: #646464;
+  border-radius: 10px;
+  padding: 10px;
+  text-align: center;
+  margin: 10px;
+  width: 200px; /* Фиксированная ширина карточки */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Добавление тени */
+  transition: transform 0.2s, box-shadow 0.2s; /* Плавный переход при наведении */
+}
+
+.game-card:hover {
+  transform: translateY(-5px); /* Подъем карточки при наведении */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Увеличение тени при наведении */
+}
+
+.game-image {
+  width: 180px; /* Фиксированная ширина изображения */
+  height: 120px; /* Фиксированная высота изображения */
+  object-fit: cover; /* Чтобы изображение подстраивалось под размеры, сохраняя пропорции */
+  border-radius: 5px;
+}
+
+.game-info {
+  margin-top: 10px;
+}
+
+.buy-button {
+  background-color: #C40000;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+  margin-top: 5px;
+}

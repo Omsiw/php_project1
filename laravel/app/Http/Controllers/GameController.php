@@ -7,7 +7,7 @@ use App\Models\Game;
 use App\Models\Publisher;
 use App\Models\Tag;
 use App\Models\User;
-use Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Requests\GameRequest;
@@ -17,9 +17,53 @@ class GameController extends BaseController
     protected $model = Game::class;   
 
     public function item($id){
-        $item = Game::with(['os','author','tag','publisher'])->findOrFail($id);
+        $game = Game::with(['os','author','tag','publisher'])->findOrFail($id);
 
-        return response()->json();
+        if ($game->image_path == null){
+            $imgUrl = Storage::url($game->image_path);
+        } else{
+            $imgUrl = null;
+        }
+
+        return response()->json([
+            'name' => $game->name,
+            'cost' => $game->cost,
+            'date_add' => $game->date_add,
+            'info' => $game->info,
+            'img' => $imgUrl,
+            'os' => $game->os,
+            'tag' => $game->tag,
+            'author' => $game->author,
+            'publisher' => $game->publisher
+        ], 200);
+    }
+
+    public function list(){
+        $games = Game::paginate(10);
+
+        //dd($games); //?page=2
+
+        $data = [];
+        
+
+        foreach($games as $game){
+            if ($game->image_path == null){
+                $imgUrl = Storage::url($game->image_path);
+            } else{
+                $imgUrl = null;
+            }
+            $data[] = [
+                'name' => $game->name,
+                'cost' => $game->cost,
+                'date_add' => $game->date_add,
+                'info' => $game->info,
+                'img' => $imgUrl
+            ];
+        }
+
+        //dd($data);
+
+        return response()->json($data, 200);
     }
 
     public function selectByUserId($id)
@@ -56,12 +100,19 @@ class GameController extends BaseController
         if ($validator->fails()) {
             return response()->json(['message' => $validator->errors()], 422);
         }
+        
+        if ($request->hasFile('img')){
+            $path = $request->file('img')->store('game_icons');
+        } else{
+            $path = null;
+        }
 
         $game = Game::create([
             "name" => $request->name,
             "cost" => $request->cost,
             "date_add" => $request->date_add,
-            "info" => $request->info
+            "info" => $request->info,
+            'image_path' => $path
         ]);
 
         $game->os()->attach($request->os_ids);
@@ -84,11 +135,20 @@ class GameController extends BaseController
         }
 
         $game = Game::findOrFail($id);
+
+        if( $request->hasFile('img')){
+            Storage::delete($game->image_path);
+            $path = $request->file('img')->store('game_icons');
+        } else{
+            $path = null;
+        }
+
         $game->update([ 
             "name" => $request->name,
             "cost" => $request->cost,
             "date_add" => $request->date_add,
-            "info" => $request->info
+            "info" => $request->info,
+            'image_path' => $path
         ]);
 
         $game->os()->detach();
@@ -111,6 +171,9 @@ class GameController extends BaseController
     public function destroy($id)
     {
         $game = Game::find($id);
+        if($game->image_path !=null){
+            Storage::delete($game->image_path);
+        }
         $game->user()->detach();
         $game->os()->detach();
         $game->tag()->detach();

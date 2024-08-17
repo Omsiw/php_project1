@@ -19,12 +19,12 @@ use Illuminate\Support\Facades\Route;
 //user
 Route::post('/register', [UserController::class, 'register']);
 Route::post('/login', [UserController::class, 'login']);
+Route::get('/gameSelect', [GameController::class, 'list']);
 
 Route::middleware('auth:sanctum')->group(function(){
     Route::get('/userDelete/{id}', [UserController::class, 'destroy']);
 
     //game
-    Route::get('/gameSelect', [GameController::class, 'list']);
     Route::get('/gameSelect/{id}', [GameController::class, 'item']);
     Route::get('/gameSelectByTagId/{id}', [GameController::class, 'selectByTagId']);
     Route::get('/gameSelectByUserId/{id}', [GameController::class, 'selectByUserId']);

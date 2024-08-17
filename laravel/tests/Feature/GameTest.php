@@ -9,6 +9,8 @@ use App\Models\Publisher;
 use App\Models\Tag;
 use App\Models\OS;
 use Laravel\Sanctum\Sanctum;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -24,7 +26,7 @@ class GameTest extends TestCase
 
         $response = $this->withHeaders([
             'Accept' => 'application/json'
-        ])->get('/api/gameSelect');
+        ])->get('/api/gameSelect?page=2');
 
         $response->assertStatus(200);
     }
