@@ -17,14 +17,15 @@ COPY . .
 ARG REACT_APP_API_URL
 ENV REACT_APP_API_URL $REACT_APP_API_URL
 
-RUN npm run build
+RUN export NODE_OPTIONS=--openssl-legacy-provider && npm run build
 
-# Используем Nginx для обслуживания приложения
-FROM nginx:latest
-COPY --from=build /app/build /usr/share/nginx/html
+CMD ["npm", "start"]
+# # Используем Nginx для обслуживания приложения
+# FROM nginx:latest
+# COPY --from=build /app/build /usr/share/nginx/html
 
-# Открываем порт
-EXPOSE 80
+# # Открываем порт
+# EXPOSE 80
 
-# Запускаем Nginx
-CMD ["nginx", "-g", "daemon off;"]
+# # Запускаем Nginx
+# CMD ["nginx", "-g", "daemon off;"]

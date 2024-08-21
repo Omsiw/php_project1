@@ -1,0 +1,113 @@
+.body{
+    background-color: rgba(82, 82, 82, 1);
+}
+
+.margin10vh{
+  width: 20vh;
+  margin: 10vh;
+}
+
+.my-carousel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 80%;
+  margin: auto;
+}
+
+.my-carousel-item {
+  position: relative;
+  width: 30%;
+  cursor: pointer;
+  transition: transform 0.5s ease;
+}
+
+.my-carousel-item-current {
+  z-index: 2;
+  width: 40%;
+  transform: scale(1.1);
+}
+
+.my-carousel-img {
+  width: 100%;
+  height: auto;
+  border-radius: 15px;
+}
+
+.my-carousel-caption {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  color: white;
+  text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+
+.darkened {
+  filter: brightness(0.5);
+}
+
+.my-carousel-item-prev, .my-carousel-item-next {
+  opacity: 0.7;
+}
+
+.my-carousel-item-prev:hover, .my-carousel-item-next:hover {
+  opacity: 1;
+  transform: scale(1.05);
+}
+
+.search-sort-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10vh;
+  width: 90%;
+  margin: 10vh 5vw 10vh;
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  background-color: #A3A3A3; /* Цвет фона */
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.search-box input {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  padding: 5px;
+}
+
+.search-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.sort-box {
+  display: flex;
+  align-items: center;
+  background-color: #A3A3A3; /* Цвет фона */
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.sort-box select {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  padding: 5px;
+}
+
+.sort-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.game-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}

@@ -1,0 +1,27 @@
+.mod-game-card{
+    display: flex;
+    justify-content: center;
+    padding: 3vh;
+    gap: 3%;
+    width: 100%;
+    background-color: #646464;
+    border-radius: 10px;
+}
+
+.mod-game-image {
+  width: 10vw; /* Фиксированная ширина изображения */
+  height: 10vh; /* Фиксированная высота изображения */
+  object-fit: cover; /* Чтобы изображение подстраивалось под размеры, сохраняя пропорции */
+  border-radius: 5px;
+}
+
+.mod-game-info{
+    align-content: center;
+    width: 50%;
+}
+
+.mod-game-buttons{
+    display: flex;
+    align-items: center;
+    gap: 5%;
+}

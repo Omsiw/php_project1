@@ -13,19 +13,28 @@ use App\Http\Controllers\RevieController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WishGameController;
+use App\Models\Discount;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 //user
 Route::post('/register', [UserController::class, 'register']);
 Route::post('/login', [UserController::class, 'login']);
+Route::get('/gameRandomSelect', [GameController::class, 'randomGames']);
+Route::get('/gameSelect/{id}', [GameController::class, 'item']);
 Route::get('/gameSelect', [GameController::class, 'list']);
+Route::get('/osSelect', [OSController::class, 'list']);
+Route::get('/tagSelect', [TagController::class, 'list']);
+Route::get('/authorSelect', [AuthorController::class, 'list']);
+Route::get('/publSelect', [PublisherController::class, 'list']);
+Route::get('/discountSelectRandomGame', [Discount::class, 'selectRandomGames']);
 
 Route::middleware('auth:sanctum')->group(function(){
+    Route::get('/userSelectAllGames/{id}', [UserController::class, 'showGames']);
+    Route::get('/userAddGameInLib/{id}/{gameId}', [UserController::class, 'addGame']);
     Route::get('/userDelete/{id}', [UserController::class, 'destroy']);
 
     //game
-    Route::get('/gameSelect/{id}', [GameController::class, 'item']);
     Route::get('/gameSelectByTagId/{id}', [GameController::class, 'selectByTagId']);
     Route::get('/gameSelectByUserId/{id}', [GameController::class, 'selectByUserId']);
     Route::get('/gameSelectByAuthorId/{id}', [GameController::class, 'selectByAuthorId']);

@@ -21,7 +21,7 @@ class UserController
         $token = $user->createToken('auth_token')->plainTextToken;
 
         return response()->json([
-            'login' => $user->login,
+            'id' => $user->id,
             'token' => $token
         ], 201);
     }
@@ -31,16 +31,16 @@ class UserController
         $user = User::where('login', $request->login)->first();
         if (!$user || !Hash::check($request->password, $user->password)){
             return response()->json([
-                'message' => 'Bad creds'
-            ], 401);
+                'message' => 'wrong login or password'
+            ], 400);
         }
 
         $token = $user->createToken('auth_token')->plainTextToken;
 
         return response()->json([
-            'login' => $user->login,
+            'id' => $user->id,
             'token' => $token
-        ], 201);
+        ], 200);
     }
 
     public function addGame(int $id, int $gameId){
@@ -48,6 +48,11 @@ class UserController
         $user->game()->attach($gameId);
     }
 
+    public function showGames(int $id){
+        $games = User::find($id)->game();
+
+        return response()->json($games, 200);
+    }
 
     public function destroy(int $id)
     {

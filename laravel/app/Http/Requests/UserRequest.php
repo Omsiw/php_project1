@@ -23,9 +23,7 @@ class UserRequest extends FormRequest
     {
         return [
             'login' => 'min:3|max:10|string',
-            'name' => 'min:3|max:10|string',
-            'password' => 'min:8|max:16|string',
-            'email' => 'email:rfc,dns'
+            'password' => 'min:8|max:16|string'
         ];
     }
 }

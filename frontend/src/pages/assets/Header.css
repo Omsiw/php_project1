@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=Italiana&display=swap');
+.header {
+    width: 100%;
+    height: 11vh;
+    background-color: #333333;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    box-sizing: border-box;
+    border-bottom: 5px solid #B30000;
+    margin: 0 0 15vh 0;
+}
+
+.footer {
+    width: 100%;
+    height: 6vh;
+    background-color: #646464;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    box-sizing: border-box;
+    border-top: 5px solid #B30000;
+}
+
+.nav {
+    display: flex;
+    gap: 6vh;
+    padding: 2vh;
+}
+
+.link {
+    font-family: "Italiana", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    color: #ccc;
+    font-size: 4vh;
+    text-decoration: none;
+    font-family: serif;
+}
+
+.profile-container {
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+}
+
+.profile-image {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+.my-dropdown-menu {
+    position: absolute;
+    top: 50px;
+    right: 0;
+    background-color: #666666;
+    padding: 10px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.menu-item {
+    border-radius: 20px;
+    text-align: center;
+    color: #ccc;
+    text-decoration: none;
+    font-size: 18px;
+    cursor: pointer;
+    width:  100%;
+    padding: 1vh 1vw;
+}
+
+.menu-item:hover {
+    background-color: #333333;
+}

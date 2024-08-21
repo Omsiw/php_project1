@@ -56,7 +56,7 @@ services:
     volumes:
       - ./frontend:/app
     ports:
-      - "3000:3000"
+      - "3001:3000"
     networks:
       - app-network
 

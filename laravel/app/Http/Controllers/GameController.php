@@ -26,6 +26,7 @@ class GameController extends BaseController
         }
 
         return response()->json([
+            'id' => $game->id,
             'name' => $game->name,
             'cost' => $game->cost,
             'date_add' => $game->date_add,
@@ -36,6 +37,35 @@ class GameController extends BaseController
             'author' => $game->author,
             'publisher' => $game->publisher
         ], 200);
+    }
+
+    public function randomGames(){
+        $games = Game::inRandomOrder()->limit(10)->get();
+
+        //dd($games); //?page=2
+
+        $data = [];
+        
+
+        foreach($games as $game){
+            if ($game->image_path == null){
+                $imgUrl = Storage::url($game->image_path);
+            } else{
+                $imgUrl = null;
+            }
+            $data[] = [
+                'id' => $games->id,
+                'name' => $game->name,
+                'cost' => $game->cost,
+                'date_add' => $game->date_add,
+                'info' => $game->info,
+                'img' => $imgUrl
+            ];
+        }
+
+        //dd($data);
+
+        return response()->json($data, 200);
     }
 
     public function list(){
@@ -53,6 +83,7 @@ class GameController extends BaseController
                 $imgUrl = null;
             }
             $data[] = [
+                'id' => $game->id,
                 'name' => $game->name,
                 'cost' => $game->cost,
                 'date_add' => $game->date_add,
@@ -100,8 +131,8 @@ class GameController extends BaseController
         if ($validator->fails()) {
             return response()->json(['message' => $validator->errors()], 422);
         }
-        
         if ($request->hasFile('img')){
+            
             $path = $request->file('img')->store('game_icons');
         } else{
             $path = null;
@@ -118,9 +149,7 @@ class GameController extends BaseController
         $game->os()->attach($request->os_ids);
         $game->tag()->attach($request->tag_ids);
         $game->author()->attach($request->author_ids);
-        if ($request->publisher_ids == null){
-            $game->publisher()->attach($request->author_ids);
-        } else{
+        if ($request->publisher_ids != null){
             $game->publisher()->attach($request->publisher_ids);
         }
 

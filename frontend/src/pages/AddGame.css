@@ -1,0 +1,80 @@
+.flex-body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.add-game-container {
+    width: 70%;
+    min-height: 60vh;
+    background-color: #555;
+    padding: 15vh 10vw 10vh;
+    border-radius: 20px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    background-color: #ddd;
+    color: #333;
+    font-size: 16px;
+    box-shadow: inset 0px 2px 4px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+}
+
+.form-input:focus {
+    outline: none;
+    background-color: #ccc;
+}
+
+.buttons-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.back-button,
+.create-button {
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    color: white;
+    background-color: #666;
+    text-decoration: none;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.back-button {
+    background-color: #555;
+}
+
+.create-button {
+    background-color: #c00;
+}
+
+.back-button:hover,
+.create-button:hover {
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.create-button:hover {
+    background-color: #a00;
+}
+
+.back-button:hover {
+    background-color: #444;
+}
+.error-message{
+    color: red;
+}
